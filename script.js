@@ -18,6 +18,16 @@ function normalizeHoliday(str) {
     return `${dd.padStart(2, "0")}.${mm.padStart(2, "0")}.${yyyy}`;
 }
 
+
+function getDayWord(n) {
+    n = Math.abs(n) % 100;
+    let n1 = n % 10;
+    if (n > 10 && n < 20) return "днів";
+    if (n1 === 1) return "день";
+    if (n1 >= 2 && n1 <= 4) return "дні";
+    return "днів";
+}
+
 function calculate() {
     const startStr = document.getElementById("startDate").value;
     const endStr = document.getElementById("endDate").value;
@@ -52,6 +62,7 @@ function calculate() {
         return;
     }
 
+    
     if (start && duration && !endStr) {
         let current = new Date(start);
         let counted = 1;
@@ -63,6 +74,7 @@ function calculate() {
         return;
     }
 
+    
     if (end && duration && !startStr) {
         let current = new Date(end);
         let counted = 1;
@@ -74,6 +86,7 @@ function calculate() {
         return;
     }
 
+    
     if (start && end && !durationStr) {
         if (end < start) {
             result.textContent = "Помилка: дата завершення не може бути раніше за дату початку.";
@@ -85,7 +98,7 @@ function calculate() {
             current.setDate(current.getDate() + 1);
             if (!holidays.includes(formatDate(current))) days++;
         }
-        result.textContent = "Тривалість: " + days + " днів";
+        result.textContent = "Тривалість: " + days + " " + getDayWord(days);
         return;
     }
 
