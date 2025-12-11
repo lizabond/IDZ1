@@ -21,7 +21,6 @@ body, html {
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    border: 2px solid #4CAF50;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -60,8 +59,8 @@ button {
     flex: 1;
     padding: 10px;
     font-size: 16px;
-    background: #4CAF50;
-    color: white;
+    background: #ccc;
+    color: #333;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -69,15 +68,15 @@ button {
 }
 
 button:hover {
-    background: #43a047;
+    background: #bbb;
 }
 
 .reset-btn {
-    background: #d9534f;
+    background: #ccc;
 }
 
 .reset-btn:hover {
-    background: #c9302c;
+    background: #bbb;
 }
 
 #warning {
