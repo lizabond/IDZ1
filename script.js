@@ -50,8 +50,9 @@ function calculate() {
         .map(normalizeHoliday)
         .filter(d => d !== null);
 
-    if (start) if (start.getDay() === 0) warning.textContent += "Увага: дата початку припадає на неділю. ";
-    if (end) if (end.getDay() === 0) warning.textContent += "Увага: дата завершення припадає на неділю. ";
+    
+    if (start && start.getDay() === 0) warning.textContent += "Увага: дата початку припадає на неділю. ";
+    if (end && end.getDay() === 0) warning.textContent += "Увага: дата завершення припадає на неділю. ";
 
     if ((startStr && !start) || (endStr && !end)) {
         result.textContent = "Помилка: введена некоректна дата.";
@@ -65,11 +66,13 @@ function calculate() {
     
     if (start && duration && !endStr) {
         let current = new Date(start);
-        let counted = 1;
+        let counted = 0;
+
         while (counted < duration) {
-            current.setDate(current.getDate() + 1);
             if (!holidays.includes(formatDate(current))) counted++;
+            if (counted < duration) current.setDate(current.getDate() + 1);
         }
+
         result.textContent = "Дата завершення: " + formatDate(current);
         return;
     }
@@ -77,11 +80,13 @@ function calculate() {
     
     if (end && duration && !startStr) {
         let current = new Date(end);
-        let counted = 1;
+        let counted = 0;
+
         while (counted < duration) {
-            current.setDate(current.getDate() - 1);
             if (!holidays.includes(formatDate(current))) counted++;
+            if (counted < duration) current.setDate(current.getDate() - 1);
         }
+
         result.textContent = "Дата початку: " + formatDate(current);
         return;
     }
@@ -93,11 +98,13 @@ function calculate() {
             return;
         }
         let current = new Date(start);
-        let days = 1;
-        while (current < end) {
-            current.setDate(current.getDate() + 1);
+        let days = 0;
+
+        while (current <= end) {
             if (!holidays.includes(formatDate(current))) days++;
+            current.setDate(current.getDate() + 1);
         }
+
         result.textContent = "Тривалість: " + days + " " + getDayWord(days);
         return;
     }
