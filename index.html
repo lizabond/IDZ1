@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="calculator-box">
+        <h2>Калькулятор відпустки</h2>
+
+        <div class="input-group">
+            <label>Дата початку:</label>
+            <input type="date" id="startDate">
+        </div>
+
+        <div class="input-group">
+            <label>Дата завершення:</label>
+            <input type="date" id="endDate">
+        </div>
+
+        <div class="input-group">
+            <label>Тривалість (днів):</label>
+            <input type="number" id="duration" placeholder="наприклад: 10">
+        </div>
+
+        <div class="input-group">
+            <label>Святкові дні (через кому):</label>
+            <input type="text" id="holidays" placeholder="01.01.2025, 07.01.2025">
+        </div>
+
+        <div class="button-group">
+            <button onclick="calculate()">Розрахувати</button>
+            <button onclick="resetForm()" class="reset-btn">Скинути</button>
+        </div>
+
+        <p id="warning"></p>
+        <p id="result"></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
